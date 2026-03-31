@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog 前台</title>
+  <link rel="stylesheet" href="/frontend/assets/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>博客文章</h1>
+      <a href="/frontend/admin.html">进入后台</a>
+    </header>
+
+    <section class="card">
+      <div class="row">
+        <input id="q" placeholder="搜索标题/内容" />
+        <select id="category"><option value="">全部分类</option></select>
+        <select id="tag"><option value="">全部标签</option></select>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <input id="page" type="number" min="1" value="1" />
+        <select id="page_size">
+          <option>10</option>
+          <option>20</option>
+          <option>30</option>
+        </select>
+        <button id="search-btn">查询</button>
+      </div>
+      <div id="total" class="small" style="margin-top:10px"></div>
+      <p id="error"></p>
+    </section>
+
+    <section id="posts"></section>
+  </div>
+
+  <script src="/frontend/assets/api.js"></script>
+  <script src="/frontend/assets/public.js"></script>
+</body>
+</html>
