@@ -1,0 +1,44 @@
+server:
+  port: 8080
+  base_url: "http://localhost:8080"
+  mode: "debug"
+
+database:
+  host: "127.0.0.1"
+  port: 3306
+  name: "blog"
+  user: "root"
+  password: "root"
+  charset: "utf8mb4"
+  max_idle_conns: 10
+  max_open_conns: 100
+
+jwt:
+  secret: "5f1d0f8d8b0f2a0a6b6c7b9d7f2c0c9e3a4f8b1c6d2e9f7a0b3c5d8e1f4a7b9"
+  expiry_hours: 100000
+
+storage:
+  driver: "local"   # "local" or "s3"
+  local:
+    upload_dir: "./uploads"
+    url_prefix: "/uploads"
+  s3:
+    bucket: "my-blog-images"
+    region: "us-east-1"
+    endpoint: ""           # leave empty for AWS; set for OSS/MinIO
+    access_key_id: ""
+    secret_access_key: ""
+    public_url_base: "https://my-blog-images.s3.amazonaws.com"
+    force_path_style: false
+
+image:
+  max_size_mb: 10
+  allowed_types:
+    - "image/jpeg"
+    - "image/png"
+    - "image/gif"
+    - "image/webp"
+
+seed:
+  admin_username: "kirep"
+  admin_password: "kirep"
