@@ -47,7 +47,10 @@ func main() {
 	router.Setup(engine, provider)
 
 	// Serve frontend static files
-	engine.Static("/web", "./web")
+	engine.Static("/frontend", "./frontend")
+	engine.GET("/", func(c *gin.Context) {
+		c.Redirect(302, "/frontend/index.html")
+	})
 
 	// 6. Run
 	addr := fmt.Sprintf(":%d", config.C.Server.Port)

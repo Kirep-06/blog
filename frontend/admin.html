@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog 管理后台</title>
+  <link rel="stylesheet" href="/frontend/assets/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>管理后台</h1>
+      <div>
+        <a href="/frontend/index.html">查看前台</a>
+        <button id="logout-btn" class="secondary hidden">退出</button>
+      </div>
+    </header>
+
+    <div id="success"></div>
+    <div id="error"></div>
+
+    <section id="login-panel" class="card">
+      <h2>登录</h2>
+      <div class="row">
+        <input id="username" placeholder="用户名" />
+        <input id="password" type="password" placeholder="密码" />
+        <button id="login-btn">登录</button>
+      </div>
+      <p class="small">登录成功后会保存 token 到 localStorage。</p>
+    </section>
+
+    <section id="admin-panel" class="hidden">
+      <div class="tabs">
+        <button class="tab-btn" id="tab-posts">文章管理</button>
+        <button class="tab-btn" id="tab-editor">编辑器</button>
+        <button class="tab-btn" id="tab-categories">分类</button>
+        <button class="tab-btn" id="tab-tags">标签</button>
+      </div>
+
+      <div id="panel-posts" data-tab class="card hidden">
+        <div class="row">
+          <input id="post-q" placeholder="搜索文章" />
+          <select id="post-published">
+            <option value="">全部状态</option>
+            <option value="true">仅已发布</option>
+            <option value="false">仅草稿</option>
+          </select>
+          <button id="search-posts">查询</button>
+          <button id="new-post" class="success">新建</button>
+        </div>
+        <div id="post-total" class="small" style="margin:10px 0"></div>
+        <table class="table">
+          <thead><tr><th>标题</th><th>状态</th><th>分类</th><th>创建时间</th><th>操作</th></tr></thead>
+          <tbody id="post-table-body"></tbody>
+        </table>
+        <div class="pagination">
+          <button id="prev-page" class="secondary">上一页</button>
+          <span>第 <strong id="page-now">1</strong> 页</span>
+          <button id="next-page" class="secondary">下一页</button>
+        </div>
+      </div>
+
+      <div id="panel-editor" data-tab class="card hidden">
+        <h3 id="editor-title">新建文章</h3>
+        <div class="row">
+          <input id="post-title" placeholder="标题" />
+          <input id="post-cover" placeholder="封面 URL" />
+        </div>
+        <div class="row" style="margin-top:10px">
+          <select id="post-category"></select>
+          <label style="display:flex;align-items:center;gap:8px"><input id="post-published" type="checkbox" /> 已发布</label>
+        </div>
+        <div style="margin:10px 0">
+          <strong>标签：</strong>
+          <div id="post-tags"></div>
+        </div>
+        <textarea id="post-content" placeholder="Markdown 内容"></textarea>
+        <div class="row" style="margin-top:10px">
+          <input id="upload-file" type="file" accept="image/*" />
+          <button id="upload-btn" class="secondary">上传封面</button>
+          <button id="save-post">保存文章</button>
+        </div>
+      </div>
+
+      <div id="panel-categories" data-tab class="hidden">
+        <section class="card">
+          <div class="row">
+            <input id="new-category" placeholder="新增分类名称" />
+            <button id="create-category">新增分类</button>
+          </div>
+        </section>
+        <section id="categories-list"></section>
+      </div>
+
+      <div id="panel-tags" data-tab class="hidden">
+        <section class="card">
+          <div class="row">
+            <input id="new-tag" placeholder="新增标签名称" />
+            <button id="create-tag">新增标签</button>
+          </div>
+        </section>
+        <section id="tags-list"></section>
+      </div>
+    </section>
+  </div>
+
+  <script src="/frontend/assets/api.js"></script>
+  <script src="/frontend/assets/admin.js"></script>
+</body>
+</html>
